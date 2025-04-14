@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "Mr. Whiskerson",
+    "phone": "+1-555-1234",
+    "email": "whiskerson@catmail.com",
+    "image": "https://cataas.com/cat/says/Hello"
+  },
+  {
+    "id": 2,
+    "name": "Sir Pounce-a-lot",
+    "phone": "+1-555-5678",
+    "email": "pouncealot@catmail.com",
+    "image": "https://cataas.com/cat/says/Meow"
+  },
+  {
+    "id": 3,
+    "name": "Meowzilla",
+    "phone": "+1-555-9012",
+    "email": "meowzilla@catmail.com",
+    "image": "https://cataas.com/cat/says/Roar"
+  },
+  {
+    "id": 4,
+    "name": "Fluffington III",
+    "phone": "+1-555-3456",
+    "email": "fluffington@catmail.com",
+    "image": "https://cataas.com/cat/says/Purr"
+  },
+  {
+    "id": 5,
+    "name": "Captain Purr",
+    "phone": "+1-555-7890",
+    "email": "captainpurr@catmail.com",
+    "image": "https://cataas.com/cat/says/Howdy"
+  },
+  {
+    "id": 6,
+    "name": "The Great Catsby",
+    "phone": "+1-555-2345",
+    "email": "gatsby@catmail.com",
+    "image": "https://cataas.com/cat/says/Welcome"
+  }
+]
