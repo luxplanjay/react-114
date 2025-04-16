@@ -1,0 +1,12 @@
+.alert {
+  background-color: gray;
+  color: white;
+}
+
+.isSuccess {
+  background-color: green;
+}
+
+.isError {
+  background-color: red;
+}

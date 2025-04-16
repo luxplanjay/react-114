@@ -1,30 +1,38 @@
-# Заняття 1 - Компоненти
+# Заняття 2 - Стилізація
 
-- Бібліотека React
-  - Стандартизація розробки
-  - Екосистема бібліотек
-- [Інструменти розробника](https://react.dev/learn/react-developer-tools#browser-extension)
-- Рендер додатка в DOM у файлі `main.jsx`
-  - Пакети `react` та `react-dom`
-  - Методи `createRoot` та `render`
-  - Елемент `div#root` у `index.html`
-- JSX - опис UI
-  - Особливості
-  - Правило спільного батька
-  - Фрагменти
-  - JSX вирази у розмітці та атрибутах
-- Компоненти
-  - Папка `src/components`
-  - Кореневий компонент `App`
-  - Дефолтний імпорт та експорт компонентів
-- Налаштування компонента
-  - Параметр `props`
-  - Деструктуризація пропсів
-- Рендер за умови
-  - Значення що не відображаються: `null`, `undefined`, `false`
-  - Оператор `&&`
-  - Тернарний оператор
-- Колекції елементів
-  - Метод `map` використовують тоді, коли дані не статичні, а можуть змінюватися з часом: завантажуються з API, додаються користувачем, фільтруються тощо.
-  - Ключі елементів з `key`
-  - Компоненти списку та елементу
+- Трішки про вбудовані стилі та ванільний CSS
+  - Проблема маштабування, підтримки ітд
+- Структура папок та файлів
+  - Папка компонента
+  - Файл компонента
+  - Файл стилів
+  - Іменування
+- CSS-модулі
+  - Використання
+  - Композиція класів з бібліотекою [clsx](https://www.npmjs.com/package/clsx)
+- Нормалізація стилів з [modern-normalize](https://www.npmjs.com/package/modern-normalize)
+- Бібліотека [React Icons](https://react-icons.github.io/react-icons/)
+- Імпорт кастомних SVG іконок
+  - Налаштування `vite-plugin-svgr` у `vite.config.js`
+  - Імпорт (дефолтний) SVG файлу як компонента (зображення у папці `assets`)
+
+```js
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import svgr from 'vite-plugin-svgr';
+
+export default defineConfig({
+  plugins: [
+    react(),
+    svgr({
+      svgrOptions: {
+        exportType: 'default',
+        ref: true,
+        svgo: false,
+        titleProp: true,
+      },
+      include: '**/*.svg',
+    }),
+  ],
+});
+```
