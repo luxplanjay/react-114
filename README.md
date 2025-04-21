@@ -1,38 +1,17 @@
-# Заняття 2 - Стилізація
+# Заняття 3 - Події та стан компонента
 
-- Трішки про вбудовані стилі та ванільний CSS
-  - Проблема маштабування, підтримки ітд
-- Структура папок та файлів
-  - Папка компонента
-  - Файл компонента
-  - Файл стилів
-  - Іменування
-- CSS-модулі
-  - Використання
-  - Композиція класів з бібліотекою [clsx](https://www.npmjs.com/package/clsx)
-- Нормалізація стилів з [modern-normalize](https://www.npmjs.com/package/modern-normalize)
-- Бібліотека [React Icons](https://react-icons.github.io/react-icons/)
-- Імпорт кастомних SVG іконок
-  - Налаштування `vite-plugin-svgr` у `vite.config.js`
-  - Імпорт (дефолтний) SVG файлу як компонента (зображення у папці `assets`)
-
-```js
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import svgr from 'vite-plugin-svgr';
-
-export default defineConfig({
-  plugins: [
-    react(),
-    svgr({
-      svgrOptions: {
-        exportType: 'default',
-        ref: true,
-        svgo: false,
-        titleProp: true,
-      },
-      include: '**/*.svg',
-    }),
-  ],
-});
-```
+- Обробка подій
+  - Іменування атрибутів обробників `on*`
+  - Додавання обробника події
+  - Посилання на функцію
+  - Анонімний колбек
+  - Об'єкт події
+- [Стан компонента](https://raw.githubusercontent.com/goitacademy/react-course-track/03-state/assets/state.png)
+  - Реактивність
+  - Хук `useState`
+  - Обмеження хуків
+  - Асинхронність оновлення стану
+  - Локальність стану
+  - [Підняття стану](https://raw.githubusercontent.com/goitacademy/react-course-track/03-state/assets/lifting-state.png)
+  - Декілька станів (зробити ефект toggle з `setIsVisible(!isVisible)`)
+  - Оновлення об'єктів
