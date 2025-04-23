@@ -1,62 +1,44 @@
-import { useState } from 'react';
-import Counter from '../Counter';
-import Accordion from '../Accordion';
+import { useState, useEffect } from 'react';
+import Sidebar from '../Sidebar/Sidebar';
+import Timer from '../Timer';
 import css from './App.module.css';
-
-const items = [
-  { title: 'Section 1', content: 'This is the content of section 1.' },
-  { title: 'Section 2', content: 'This is the content of section 2.' },
-  { title: 'Section 3', content: 'This is the content of section 3.' },
-];
+import axios from 'axios';
+import ClickCounter from '../ClickCounter';
 
 export default function App() {
-  const [clicks, setClicks] = useState(0);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const [taskCount, setTaskCount] = useState({
-    work: 0,
-    hobby: 0,
-    edu: 0,
-  });
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
-  const totalTasks = taskCount.work + taskCount.hobby + taskCount.edu;
+  const [isTimerOpen, setIsTimerOpen] = useState(false);
+  const toggleTimer = () => setIsTimerOpen(!isTimerOpen);
 
-  const updateTaskCount = (taskType) => {
-    setTaskCount({
-      ...taskCount,
-      [taskType]: taskCount[taskType] + 1,
-    });
-  };
+  const [character, setCharacter] = useState(null);
+  const [count, setCount] = useState(1);
 
-  const handleClick = () => {
-    setClicks(clicks + 1);
-  };
+  useEffect(() => {
+    axios
+      .get(`https://swapi.info/api/people/${count}`)
+      .then((response) => setCharacter(response.data));
+  }, [count]);
 
-  const toggleText = () => {
-    setIsOpen(!isOpen);
-  };
+  useEffect(() => {
+    document.title = character && character.name;
+  }, [character]);
 
   return (
     <div className={css.container}>
-      <Counter value={clicks} onUpdate={handleClick} />
-      <Counter value={clicks} onUpdate={handleClick} />
-      <Counter value={clicks} onUpdate={handleClick} />
-      <hr />
-      <button onClick={toggleText}>{isOpen ? 'Hide' : 'Show'}</button>
-      {isOpen && <p>🎉 Now you can see me!</p>}
-      <hr />
-      <Accordion tabs={items} />
-      <hr />
-      <p>Total tasks: {totalTasks}</p>
-      <button onClick={() => updateTaskCount('work')}>
-        Work {taskCount.work}
-      </button>
-      <button onClick={() => updateTaskCount('hobby')}>
-        Hobby {taskCount.hobby}
-      </button>
-      <button onClick={() => updateTaskCount('edu')}>
-        Education {taskCount.edu}
-      </button>
+      <button onClick={() => setCount(count + 1)}>Count is {count}</button>
+
+      <button onClick={toggleSidebar}>Open sidebar</button>
+      {isSidebarOpen && <Sidebar onClose={toggleSidebar} />}
+
+      <button onClick={toggleTimer}>Toggle timer</button>
+      {isTimerOpen && <Timer />}
+
+      <ClickCounter />
+
+      <pre>{JSON.stringify(character, null, 2)}</pre>
     </div>
   );
 }
