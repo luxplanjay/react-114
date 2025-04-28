@@ -1,15 +1,56 @@
+import { useId } from 'react';
 import css from './OrderForm.module.css';
 
-export default function OrderForm() {
+export default function OrderForm({ onSubmit }) {
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const formData = new FormData(event.currentTarget);
+
+  // const formValues = {
+  //   ...Object.fromEntries(formData),
+  //   restrictions: formData.getAll('restrictions'),
+  // };
+
+  //   onSubmit(formValues);
+
+  //   event.currentTarget.reset();
+  // };
+
+  const fieldId = useId();
+
+  // Form action
+  const handleSubmit = (formData) => {
+    const formValues = {
+      ...Object.fromEntries(formData),
+      restrictions: formData.getAll('restrictions'),
+    };
+
+    onSubmit(formValues);
+  };
+
   return (
-    <form className={css.form}>
+    <form className={css.form} action={handleSubmit}>
       <fieldset className={css.fieldset}>
         <legend className={css.legend}>Client info:</legend>
-        <label className={css.label}>Name</label>
-        <input type='text' name='username' />
+        <label className={css.label} htmlFor={`${fieldId}-username`}>
+          Name
+        </label>
+        <input
+          type='text'
+          name='username'
+          className={css.input}
+          id={`${fieldId}-username`}
+        />
 
-        <label className={css.label}>Email</label>
-        <input type='email' name='email' />
+        <label className={css.label} htmlFor={`${fieldId}-email`}>
+          Email
+        </label>
+        <input
+          type='email'
+          name='email'
+          className={css.input}
+          id={`${fieldId}-email`}
+        />
       </fieldset>
 
       <fieldset className={css.fieldset}>
@@ -44,9 +85,18 @@ export default function OrderForm() {
         </label>
       </fieldset>
 
-      <label className={css.label}>Preferred delivery time</label>
-      <select name='deliveryTime' defaultValue='' className={css.input}>
-        <option value=''>-- Choose delivery time --</option>
+      <label className={css.label} htmlFor={`${fieldId}-deliveryTime`}>
+        Preferred delivery time
+      </label>
+      <select
+        name='deliveryTime'
+        defaultValue=''
+        className={css.input}
+        id={`${fieldId}-deliveryTime`}
+      >
+        <option value='' disabled>
+          -- Choose delivery time --
+        </option>
         <option value='morning'>Morning (8:00-12:00)</option>
         <option value='afternoon'>Afternoon (12:00-16:00)</option>
         <option value='evening'>Evening (16:00-20:00)</option>
