@@ -73,3 +73,8 @@
 .button:hover {
   background-color: #0056b3;
 }
+
+.error {
+  font-size: 14px;
+  color: orangered;
+}
