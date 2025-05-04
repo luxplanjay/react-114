@@ -1,21 +1,13 @@
-import { useState } from 'react';
-import OrderForm from '../OrderForm/OrderForm';
+// import toast, { Toaster } from "react-hot-toast";
+// import ArticleList from "../ArticleList/ArticleList";
+// import SearchForm from '../SearchForm/SearchForm';
+// import { fetchArticles } from "../../article-api";
 import css from './App.module.css';
 
 export default function App() {
-  const [orders, setOrders] = useState([]);
-
-  const addNewOrder = (newOrder) => {
-    setOrders((prevOrders) => {
-      return [...prevOrders, newOrder];
-    });
-  };
-
   return (
     <div className={css.container}>
-      <OrderForm onSubmit={addNewOrder} />
-
-      <pre>{JSON.stringify(orders, null, 2)}</pre>
+      <h1>HTTP requests in React</h1>
     </div>
   );
 }
