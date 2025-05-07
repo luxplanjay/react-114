@@ -2,16 +2,24 @@
  * Необхідно прибрати атрибут controls та за допомогою Audio API
  * зробити кастомні контроли (play, pause, currentTime, timeupdate).
  */
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 export default function Player() {
+  const playerRef = useRef();
+
   const [currentTime, setCurrentTime] = useState(0);
 
-  const handlePlay = () => {};
+  const handlePlay = () => {
+    playerRef.current.play();
+  };
 
-  const handlePause = () => {};
+  const handlePause = () => {
+    playerRef.current.pause();
+  };
 
-  const handleTimeUpdate = (event) => {};
+  const handleTimeUpdate = (event) => {
+    setCurrentTime(event.target.currentTime);
+  };
 
   const minutes = Math.floor(currentTime / 60)
     .toString()
@@ -25,15 +33,16 @@ export default function Player() {
       <audio
         type="audio/mp3"
         src="https://github.com/rafaelreis-hotmart/Audio-Sample-files/raw/master/sample.mp3"
-        controls
+        ref={playerRef}
+        onTimeUpdate={handleTimeUpdate}
       ></audio>
-      {/* <div>
+      <div>
         <button onClick={handlePlay}>Play</button>
         <button onClick={handlePause}>Pause</button>
       </div>
       <div>
         Current Time: {minutes}:{seconds}
-      </div> */}
+      </div>
     </div>
   );
 }

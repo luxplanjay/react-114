@@ -6,12 +6,24 @@
  *  - Доступ в ефектах і функціях
  */
 
+import { useEffect, useState } from 'react';
+import { useRef } from 'react';
+
 export default function RefBasics() {
+  const [clicks, setClicks] = useState(0);
+  const valueRef = useRef(0);
+
+  const updateValue = () => {
+    valueRef.current += 1;
+    console.log('updateValue:', valueRef);
+  };
+
   return (
     <div>
-      <h2>Ref basics</h2>
-      <button>Ref clicks: {0}</button>
-      <button>State clicks: {0}</button>
+      <button onClick={updateValue}>Update value ref</button>
+      <button onClick={() => setClicks(clicks + 1)}>
+        State clicks: {clicks}
+      </button>
     </div>
   );
 }
