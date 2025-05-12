@@ -1,0 +1,23 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #2a2a2a;
+  margin-bottom: 20px;
+}
+
+.nav {
+  display: flex;
+  gap: 4px;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.isActive {
+  color: orangered;
+}
