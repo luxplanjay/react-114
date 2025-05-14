@@ -2,8 +2,12 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://dummyjson.com";
 
-export const fetchUsers = async () => {
-  const res = await axios.get("/users");
+export const fetchUsers = async (query) => {
+  const res = await axios.get("/users/search", {
+    params: {
+      q: query,
+    },
+  });
   return res.data.users;
 };
 

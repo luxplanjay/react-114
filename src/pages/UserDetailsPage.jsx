@@ -1,9 +1,18 @@
-import { useEffect, useState } from "react";
-import { NavLink, useParams, Outlet } from "react-router-dom";
+import { Suspense, useEffect, useRef, useState } from "react";
+import {
+  NavLink,
+  useParams,
+  Outlet,
+  Link,
+  useLocation,
+} from "react-router-dom";
 import UserInfo from "../components/UserInfo/UserInfo";
 import { fetchUserById } from "../services/userService";
 
 export default function UserDetailsPage() {
+  const location = useLocation();
+  const backlinkRef = useRef(location.state);
+
   const { userId } = useParams();
   const [user, setUser] = useState(null);
 
@@ -13,6 +22,8 @@ export default function UserDetailsPage() {
 
   return (
     <div>
+      <Link to={backlinkRef.current}>Go back</Link>
+
       {user && <UserInfo user={user} />}
 
       <ul>
@@ -24,7 +35,9 @@ export default function UserDetailsPage() {
         </li>
       </ul>
 
-      <Outlet />
+      <Suspense fallback={<strong>Loading subcomponent...</strong>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 }
