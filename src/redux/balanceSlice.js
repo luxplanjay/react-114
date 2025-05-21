@@ -1,6 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
 
-// Фабрика екшенів (функція яка створює об'єкти)
 export const deposit = createAction("balance/deposit");
 
 export const withdraw = createAction("balance/withdraw");
