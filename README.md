@@ -19,5 +19,3 @@
 - Створення конфігурації
 - Створення `persistor`
 - Додавання `PersistGate`
-
-<!-- https://create.kahoot.it/details/ua-6-2-redux-toolkit/d1e38a43-a282-4df1-9cb1-fac328a66de9 -->
