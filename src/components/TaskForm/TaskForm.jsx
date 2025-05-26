@@ -1,9 +1,13 @@
 import { Formik, Form, Field } from "formik";
 import css from "./TaskForm.module.css";
+import { useDispatch } from "react-redux";
+import { addTask } from "../../redux/tasksOps";
 
 export default function TaskForm() {
+  const dispatch = useDispatch();
+
   const handleSubmit = (values, actions) => {
-    console.log(values);
+    dispatch(addTask(values));
     actions.resetForm();
   };
 
