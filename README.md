@@ -12,5 +12,3 @@
 - Операціі `addTask` та `deleteTask`
   - Діспатч операцій у компонентах
   - Обробка результату операцій у слайсі
-
-<!-- https://create.kahoot.it/details/ua-7-1-redux/e5fdf2e3-b873-40b5-bf95-02f8f715093a -->

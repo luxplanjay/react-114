@@ -14,7 +14,7 @@ export default function App() {
   const error = useSelector((state) => state.tasks.error);
 
   useEffect(() => {
-    dispatch(fetchTasks(5))
+    dispatch(fetchTasks())
       .unwrap()
       .then(() => console.log("Success!!!!"))
       .catch(() => console.log("ERROR!!!"));
