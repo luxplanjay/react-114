@@ -6,6 +6,7 @@ import Error from "../Error/Error";
 import TaskForm from "../TaskForm/TaskForm";
 import { fetchTasks } from "../../redux/tasksOps";
 import css from "./App.module.css";
+import TextFilter from "../TextFilter/TextFilter";
 import { TaskCounter } from "../TaskCounter/TaskCounter";
 
 export default function App() {
@@ -21,6 +22,7 @@ export default function App() {
     <div className={css.container}>
       <TaskCounter />
       <TaskForm />
+      <TextFilter />
       {loading && <Loader>Loading tasks, please wait...</Loader>}
       {error && <Error>Error message</Error>}
       <TaskList />

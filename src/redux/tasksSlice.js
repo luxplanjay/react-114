@@ -1,5 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createSelector } from "@reduxjs/toolkit";
 import { addTask, deleteTask, fetchTasks, toggleCompleted } from "./tasksOps";
+import { selectTextFilter } from "./filtersSlice";
 
 const slice = createSlice({
   name: "tasks",
@@ -7,6 +8,8 @@ const slice = createSlice({
     items: [],
     loading: false,
     error: false,
+    a: 5,
+    b: 10,
   },
   extraReducers: (builder) =>
     builder
@@ -52,3 +55,58 @@ const slice = createSlice({
 });
 
 export default slice.reducer;
+
+// Прості селектори - повертають стан
+export const selectTasks = (state) => state.tasks.items;
+
+// Складний селектор - повертає обчислення
+// export const selectVisibleTasks = (state) => {
+//   console.log("selectVisibleTasks");
+//   const tasks = selectTasks(state);
+//   const textFilter = selectTextFilter(state);
+
+//   return tasks.filter((task) =>
+//     task.text.toLowerCase().includes(textFilter.toLowerCase())
+//   );
+// };
+
+export const selectVisibleTasks = createSelector(
+  [selectTasks, selectTextFilter],
+  (tasks, textFilter) => {
+    console.log("selectVisibleTasks");
+    return tasks.filter((task) =>
+      task.text.toLowerCase().includes(textFilter.toLowerCase())
+    );
+  }
+);
+
+// export const selectTaskCount = (state) => {
+//   const tasks = selectTasks(state);
+
+//   return tasks.reduce(
+//     (acc, task) => {
+//       if (task.completed) {
+//         acc.completed += 1;
+//       } else {
+//         acc.active += 1;
+//       }
+//       return acc;
+//     },
+//     { active: 0, completed: 0, total: tasks.length }
+//   );
+// };
+
+export const selectTaskCount = createSelector([selectTasks], (tasks) => {
+  console.log("selectTaskCount");
+  return tasks.reduce(
+    (acc, task) => {
+      if (task.completed) {
+        acc.completed += 1;
+      } else {
+        acc.active += 1;
+      }
+      return acc;
+    },
+    { active: 0, completed: 0, total: tasks.length }
+  );
+});
