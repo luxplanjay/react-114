@@ -41,3 +41,23 @@ export const logOut = createAsyncThunk("auth/logout", async () => {
   await axios.post("/users/logout");
   setAuthHeader("");
 });
+
+/*
+ * GET @ /users/me
+ * headers: Authorization: Bearer token
+ */
+export const refreshUser = createAsyncThunk(
+  "auth/refresh",
+  async (_, thunkApi) => {
+    const reduxState = thunkApi.getState();
+    setAuthHeader(`Bearer ${reduxState.auth.token}`);
+    const res = await axios.get("/users/me");
+    return res.data;
+  },
+  {
+    condition: (_, thunkApi) => {
+      const reduxState = thunkApi.getState();
+      return reduxState.auth.token !== null;
+    },
+  }
+);
