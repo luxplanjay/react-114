@@ -1,4 +1,4 @@
-import type { RootState } from "../store";
+import type { RootState } from "../types";
 
 export const selectIsLoggedIn = (state: RootState) => state.auth.isLoggedIn;
 

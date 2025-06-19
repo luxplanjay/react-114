@@ -1,4 +1,4 @@
-import type { RootState } from "../store";
+import type { RootState } from "../types";
 
 export const selectLoading = (state: RootState) => state.tasks.isLoading;
 

@@ -11,6 +11,12 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import tasksReducer from "./tasks/slice";
+// Тут була циклічна залежність, я не побачів.
+// Це тому що ми імпортуємо в store.ts редюсер із slice.ts
+// а в slice.ts типи із store.ts
+// Виправив так шо створив redux/types.ts file і туди виніс типи RootState та AppDispatch
+// Це можна було винести в папку types, не важливо, головне щоб два модулі не імпортували
+// один одного
 import authReducer from "./auth/slice";
 
 const persistedAuthReducer = persistReducer(
@@ -36,6 +42,3 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
